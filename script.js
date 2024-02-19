@@ -81,7 +81,7 @@ for (btn of document.querySelectorAll("#buttons .op")) {
 document.getElementById("btn-eq").addEventListener("click", (e) => {
   if (num1 === null || op === null) return;
   if (num2 === null) {
-    num2 = scratch === "" ? num1 : scratch;
+    num2 = scratch === "" ? num1 : Number(scratch);
   }
   res = operate(num1, op, num2);
   screen.textContent = res.toString();
@@ -93,4 +93,15 @@ document.getElementById("btn-c").addEventListener("click", (e) => {
   num1 = op = num2 = null;
   scratch = "0";
   screen.textContent = scratch;
+});
+
+document.getElementById("btn-pm").addEventListener("click", (e) => {
+  if (scratch !== "") {
+    if (scratch === "0" || scratch === "0.") return;
+    scratch = (-Number(scratch)).toString();
+    screen.textContent = scratch;
+  } else if (num1 !== null) {
+    num1 = -num1;
+    screen.textContent = num1.toString();
+  }
 });
